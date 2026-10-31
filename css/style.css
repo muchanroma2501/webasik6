@@ -320,7 +320,7 @@ body, .page-card, .card-zoo, .why-visit-card, .faq-item, .popup-box { transition
 .zoo-suggestion { width: 100%; padding: .55rem .75rem; border: 0; border-radius: .45rem; background: transparent; text-align: left; color: #183b2b; }
 .zoo-suggestion:hover,.zoo-suggestion:focus { background: #e9f5ee; outline: 2px solid #198754; }
 .search-highlight { padding: 0 .08em; border-radius: .2em; color: #342700; background: #ffe27a; box-shadow: 0 0 0 1px rgba(231,166,0,.18); }
-.zoo-toast { position: fixed; z-index: 1200; right: 1rem; bottom: 1rem; max-width: min(24rem,calc(100vw - 2rem)); padding: .85rem 1.1rem; border-radius: .8rem; background: #183b2b; color: white; box-shadow: 0 .75rem 2rem rgba(0,0,0,.2); opacity: 0; transform: translateY(.75rem); pointer-events: none; transition: opacity .25s ease,transform .25s ease; }
+.zoo-toast { position: fixed; z-index: 1600; right: 1rem; bottom: 4.5rem; max-width: min(24rem,calc(100vw - 2rem)); padding: .85rem 1.1rem; border-radius: .8rem; background: #183b2b; color: white; box-shadow: 0 .75rem 2rem rgba(0,0,0,.2); opacity: 0; transform: translateY(.75rem); pointer-events: none; transition: opacity .25s ease,transform .25s ease; }
 .zoo-toast.is-visible { opacity: 1; transform: translateY(0); }
 [data-copy-target].is-copied { color: #fff; background: #198754; }
 img.is-loaded { animation: image-arrive .25s ease-out; }

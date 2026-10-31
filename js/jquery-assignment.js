@@ -53,33 +53,71 @@
         if ($search.length) {
             var $suggestions = $search.siblings('.zoo-search-suggestions');
             var $status = isAnimalSearch ? $('#animal-count') : $('#zoo-search-status');
-            var $targets = isAnimalSearch ? $('.animal-col') : $('#main').find('.card-zoo, .faq-item, .why-visit-card, .list-group-item, article');
-            var originals = new Map();
-            $targets.each(function () { originals.set(this, $(this).html()); });
+            // Never search inside the booking form: it must keep its own buttons and typed values.
+            var $targets = isAnimalSearch ? $('.animal-col') : $('#main').find('.card-zoo, .faq-item, .why-visit-card, .list-group-item, article').not('form, #wizard-success, :has(form)');
+            // Keep only the outermost blocks, so a card and the list items inside it are not counted twice.
+            $targets = $targets.filter(function () { return !$(this).parent().closest($targets).length; });
 
             function escapeRegExp(value) { return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }
+
+            // IMPORTANT: highlighting must only wrap text nodes in <mark>. Re-writing innerHTML would
+            // destroy every event listener inside the block (FAQ accordion, star rating, fact button...).
+            function clearHighlights(root) {
+                $(root).find('mark.search-highlight').each(function () {
+                    this.parentNode.replaceChild(document.createTextNode(this.textContent), this);
+                });
+                root.normalize();
+            }
+            function highlightText(root, query) {
+                var pattern = new RegExp(escapeRegExp(query), 'ig');
+                var walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
+                    acceptNode: function (node) {
+                        if (!node.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+                        return /^(SCRIPT|STYLE|MARK)$/.test(node.parentNode.nodeName) ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT;
+                    }
+                });
+                var nodes = [];
+                while (walker.nextNode()) nodes.push(walker.currentNode);
+                nodes.forEach(function (node) {
+                    var text = node.nodeValue, last = 0, found, fragment = document.createDocumentFragment();
+                    pattern.lastIndex = 0;
+                    while ((found = pattern.exec(text)) !== null) {
+                        if (found.index > last) fragment.appendChild(document.createTextNode(text.slice(last, found.index)));
+                        var mark = document.createElement('mark');
+                        mark.className = 'search-highlight';
+                        mark.textContent = found[0];
+                        fragment.appendChild(mark);
+                        last = found.index + found[0].length;
+                    }
+                    if (!last) return;                       // no match in this text node
+                    if (last < text.length) fragment.appendChild(document.createTextNode(text.slice(last)));
+                    node.parentNode.replaceChild(fragment, node);
+                });
+            }
+
             function applySearch() {
                 var query = String($search.val() || '').trim();
                 var normalized = query.toLocaleLowerCase();
                 var matched = 0;
-                var pattern = query ? new RegExp('(' + escapeRegExp(query) + ')', 'ig') : null;
 
                 $targets.each(function () {
                     var $item = $(this);
-                    var text = isAnimalSearch ? $item.find('.card-title').text() : (originals.get(this) || '').replace(/<[^>]*>/g, ' ').replace(/&amp;/g, '&').replace(/&nbsp;/g, ' ');
+                    clearHighlights(this);
+                    var text = isAnimalSearch ? $item.find('.card-title').text() : $item.text();
                     var isMatch = !normalized || text.toLocaleLowerCase().indexOf(normalized) !== -1;
                     $item.toggle(isMatch);
                     if (isMatch) matched++;
-                    var originalHtml = originals.get(this) || '';
-                    var highlightedHtml = pattern ? originalHtml.split(/(<[^>]+>)/g).map(function (part) {
-                        return part.charAt(0) === '<' ? part : part.replace(pattern, '<mark class="search-highlight">$1</mark>');
-                    }).join('') : originalHtml;
-                    $item.html(highlightedHtml);
+                    if (isMatch && query) highlightText(this, query);
                 });
 
-                if (isAnimalSearch) $status.text('Showing ' + matched + ' of ' + $targets.length + ' animals' + (query && matched === 0 ? '. Try another name.' : ''));
-                else if (query) $status.text(matched ? matched + ' matching result' + (matched === 1 ? '' : 's') : 'No matching results. Try another keyword.');
-                else $status.text('Search this page as you type.');
+                // On the Animals page js/animals.js owns the "Showing X of Y" counter (it also knows the
+                // selected category); writing it here as well made the number wrong.
+                if (!isAnimalSearch) {
+                    if (query) $status.text(matched ? matched + ' matching result' + (matched === 1 ? '' : 's') : 'No matching results. Try another keyword.');
+                    else $status.text('Search this page as you type.');
+                }
+                // Hidden/shown blocks change the page height; let open FAQ panels and the scroll bar re-measure.
+                window.dispatchEvent(new Event('resize'));
 
                 var names = [];
                 $targets.each(function () {

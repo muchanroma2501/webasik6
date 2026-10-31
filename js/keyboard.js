@@ -24,6 +24,8 @@
 
     var target = event.target;
     if (target && (/^(INPUT|TEXTAREA|SELECT)$/.test(target.tagName) || target.isContentEditable)) return;
+    /* widgets that use the arrow keys themselves (star rating, photo carousel) keep them */
+    if (target && target.closest && target.closest('[role="radiogroup"], [role="radio"], [role="slider"], .carousel')) return;
 
     var popup = document.getElementById('subscribePopup');
     var popupOpen = popup && popup.classList.contains('is-open');
