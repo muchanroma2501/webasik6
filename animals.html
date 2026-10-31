@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>City Zoo - Our Animals</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <script defer src="https://code.jquery.com/jquery-4.0.0.min.js"></script>
+    <script defer src="js/jquery-assignment.js"></script>
+</head>
+<body>
+    <a class="visually-hidden-focusable" href="#main">Skip to main content</a>
+
+    <!-- Date / time (js/datetime.js), Day-Night theme (js/theme.js) and sound switch (js/sounds.js) -->
+    <div class="datetime-bar d-flex flex-wrap justify-content-center align-items-center gap-2 gap-sm-3 py-1 px-3" aria-label="Current date and time, theme and sound settings">
+        <span>🕒 <time id="current-datetime">Loading…</time></span>
+        <button type="button" class="bar-btn" id="themeToggle" aria-pressed="false">🌙 Night mode</button>
+        <button type="button" class="bar-btn" id="soundToggle" aria-pressed="false">🔇 Sound off</button>
+    </div>
+
+    <header class="sticky-top">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark navbar-zoo shadow" aria-label="Main navigation" aria-keyshortcuts="ArrowLeft ArrowRight">
+        <div class="container">
+            <a class="navbar-brand fw-bold fs-4" href="index.html">🦁 City Zoo</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="mainNav">
+                <ul class="navbar-nav ms-auto gap-lg-1 py-2 py-lg-0">
+                    <li class="nav-item"><a class="nav-link fw-semibold rounded-pill px-3" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link active fw-semibold rounded-pill px-3" aria-current="page" href="animals.html">Animals</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle fw-semibold rounded-pill px-3" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Visit</a>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item" href="tickets.html">Tickets</a></li>
+                            <li><a class="dropdown-item" href="schedule.html">Schedule</a></li>
+                            <li><a class="dropdown-item" href="map.html">Map</a></li>
+                            <li><a class="dropdown-item" href="rules.html">Rules</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link fw-semibold rounded-pill px-3" href="about.html">About Us</a></li>
+                    <li class="nav-item"><a class="nav-link fw-semibold rounded-pill px-3" href="contact.html">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link fw-semibold rounded-pill px-3" href="register.html">Sign Up</a></li>
+                    <li class="nav-item ms-lg-2"><button type="button" class="btn btn-warning btn-sm rounded-pill px-3 fw-semibold" data-popup-open="subscribePopup" data-sound="pop">Subscribe</button></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    </header>
+
+    <main id="main" class="container page-card my-4 mt-lg-5 px-3 px-sm-4 py-4 py-lg-5">
+        <div class="mb-4">
+            <h1 class="pb-2 mb-2">Our Animals</h1>
+            <p class="lead text-body-secondary mb-0">From African savannahs to polar waters — meet some of the 150+ species that call City Zoo home.</p>
+        </div>
+
+        <!-- Task 6: button group used as a filter -->
+        <div class="btn-group mb-4" role="group" aria-label="Filter animals by category">
+            <input type="radio" class="btn-check" name="animal-filter" id="f-all" value="all" autocomplete="off" checked>
+            <label class="btn btn-outline-success" for="f-all">All</label>
+            <input type="radio" class="btn-check" name="animal-filter" id="f-mammal" value="Mammal" autocomplete="off">
+            <label class="btn btn-outline-success" for="f-mammal">Mammals</label>
+            <input type="radio" class="btn-check" name="animal-filter" id="f-bird" value="Bird" autocomplete="off">
+            <label class="btn btn-outline-success" for="f-bird">Birds</label>
+            <input type="radio" class="btn-check" name="animal-filter" id="f-aquatic" value="Aquatic" autocomplete="off">
+            <label class="btn btn-outline-success" for="f-aquatic">Aquatic</label>
+        </div>
+
+        <div class="row g-3 align-items-center mb-3">
+            <div class="col-12 col-md-5">
+                <label for="animal-search" class="visually-hidden">Search animals by name</label>
+                <div class="zoo-search-wrap">
+                    <input type="search" class="form-control" id="animal-search" placeholder="🔍 Search animals by name..." autocomplete="off">
+                </div>
+            </div>
+            <div class="col-12 col-md-7">
+                <p class="mb-0 small fw-semibold text-body-secondary" id="animal-count" aria-live="polite"></p>
+            </div>
+        </div>
+
+        <!-- Task 8: Bootstrap cards in a responsive grid -->
+        <section class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-3 g-lg-4" id="animal-grid" aria-live="polite">
+            <div class="col animal-col" data-category="Mammal">
+                <div class="card card-zoo h-100">
+                    <div class="position-relative">
+                        <img src="https://images.unsplash.com/photo-1534188753412-3e26d0d618d6?w=800&auto=format&fit=crop&q=60" class="card-img-top" alt="African Lion">
+                        <span class="badge text-bg-success position-absolute top-0 end-0 m-2">Mammal</span>
+                    </div>
+                    <div class="card-body d-flex flex-column p-3">
+                        <h3 class="card-title h5 mb-1">African Lion</h3>
+                        <p class="fw-semibold text-success small mb-2">📍 Safari Zone</p>
+                        <p class="card-text text-body-secondary small flex-grow-1">The king of beasts resides in our spacious safari zone. Our pride consists of healthy, magnificent lions.</p>
+                        <a href="map.html" class="btn btn-outline-success btn-sm align-self-start">Find on map</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col animal-col" data-category="Mammal">
+                <div class="card card-zoo h-100">
+                    <div class="position-relative">
+                        <img src="https://storage.yandexcloud.net/storage.yasno.media/nat-geo/images/2019/5/16/1c0c018cd1194147be6833cdbdc05bfb.max-1200x800.jpg" class="card-img-top" alt="Savannah Giraffe">
+                        <span class="badge text-bg-success position-absolute top-0 end-0 m-2">Mammal</span>
+                    </div>
+                    <div class="card-body d-flex flex-column p-3">
+                        <h3 class="card-title h5 mb-1">Savannah Giraffe</h3>
+                        <p class="fw-semibold text-success small mb-2">📍 African Savannah</p>
+                        <p class="card-text text-body-secondary small flex-grow-1">The tallest mammals on Earth. You can watch them feed from special elevated platforms daily.</p>
+                        <a href="map.html" class="btn btn-outline-success btn-sm align-self-start">Find on map</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col animal-col" data-category="Mammal">
+                <div class="card card-zoo h-100">
+                    <div class="position-relative">
+                        <img src="https://images.unsplash.com/photo-1557050543-4d5f4e07ef46?w=800&auto=format&fit=crop&q=60" class="card-img-top" alt="African Elephant">
+                        <span class="badge text-bg-success position-absolute top-0 end-0 m-2">Mammal</span>
+                    </div>
+                    <div class="card-body d-flex flex-column p-3">
+                        <h3 class="card-title h5 mb-1">African Elephant</h3>
+                        <p class="fw-semibold text-success small mb-2">📍 Elephant Kingdom</p>
+                        <p class="card-text text-body-secondary small flex-grow-1">Gentle giants known for their intelligence and social bonds. Enjoy watching their daily bath times.</p>
+                        <a href="map.html" class="btn btn-outline-success btn-sm align-self-start">Find on map</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col animal-col" data-category="Mammal">
+                <div class="card card-zoo h-100">
+                    <div class="position-relative">
+                        <img src="https://images.unsplash.com/photo-1540573133985-87b6da6d54a9?w=800&auto=format&fit=crop&q=60" class="card-img-top" alt="Capuchin Monkey">
+                        <span class="badge text-bg-success position-absolute top-0 end-0 m-2">Mammal</span>
+                    </div>
+                    <div class="card-body d-flex flex-column p-3">
+                        <h3 class="card-title h5 mb-1">Capuchin Monkey</h3>
+                        <p class="fw-semibold text-success small mb-2">📍 Monkey Island</p>
+                        <p class="card-text text-body-secondary small flex-grow-1">Curious and energetic primates that love climbing, playing, and solving fun food puzzles.</p>
+                        <a href="map.html" class="btn btn-outline-success btn-sm align-self-start">Find on map</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col animal-col" data-category="Bird">
+                <div class="card card-zoo h-100">
+                    <div class="position-relative">
+                        <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Greater_flamingos_(Phoenicopterus_roseus)_resting.jpg?width=800" class="card-img-top" alt="Greater Flamingo">
+                        <span class="badge text-bg-success position-absolute top-0 end-0 m-2">Bird</span>
+                    </div>
+                    <div class="card-body d-flex flex-column p-3">
+                        <h3 class="card-title h5 mb-1">Greater Flamingo</h3>
+                        <p class="fw-semibold text-success small mb-2">📍 Bird Lagoon</p>
+                        <p class="card-text text-body-secondary small flex-grow-1">Famous for their vibrant pink plumage and graceful standing poses near the central zoo pond.</p>
+                        <a href="map.html" class="btn btn-outline-success btn-sm align-self-start">Find on map</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col animal-col" data-category="Bird">
+                <div class="card card-zoo h-100">
+                    <div class="position-relative">
+                        <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Scarlet_macaw_(Ara_macao_cyanopterus)_Copan.jpg?width=800" class="card-img-top" alt="Scarlet Macaw">
+                        <span class="badge text-bg-success position-absolute top-0 end-0 m-2">Bird</span>
+                    </div>
+                    <div class="card-body d-flex flex-column p-3">
+                        <h3 class="card-title h5 mb-1">Scarlet Macaw</h3>
+                        <p class="fw-semibold text-success small mb-2">📍 Tropical Aviary</p>
+                        <p class="card-text text-body-secondary small flex-grow-1">Bright and highly intelligent tropical parrots known for their colorful feathers and mimicry skills.</p>
+                        <a href="map.html" class="btn btn-outline-success btn-sm align-self-start">Find on map</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col animal-col" data-category="Bird">
+                <div class="card card-zoo h-100">
+                    <div class="position-relative">
+                        <img src="https://images.unsplash.com/photo-1598439210625-5067c578f3f6?w=800&auto=format&fit=crop&q=60" class="card-img-top" alt="Emperor Penguin">
+                        <span class="badge text-bg-success position-absolute top-0 end-0 m-2">Bird</span>
+                    </div>
+                    <div class="card-body d-flex flex-column p-3">
+                        <h3 class="card-title h5 mb-1">Emperor Penguin</h3>
+                        <p class="fw-semibold text-success small mb-2">📍 Polar Pavilion</p>
+                        <p class="card-text text-body-secondary small flex-grow-1">Adorable flightless birds that excel at swimming and sliding on ice in their climate-controlled habitat.</p>
+                        <a href="map.html" class="btn btn-outline-success btn-sm align-self-start">Find on map</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col animal-col" data-category="Aquatic">
+                <div class="card card-zoo h-100">
+                    <div class="position-relative">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/8/87/Tursiops_aduncus%2C_Port_River%2C_Adelaide%2C_Australia_-_2003.jpg" class="card-img-top" alt="Bottlenose Dolphin">
+                        <span class="badge text-bg-success position-absolute top-0 end-0 m-2">Aquatic</span>
+                    </div>
+                    <div class="card-body d-flex flex-column p-3">
+                        <h3 class="card-title h5 mb-1">Bottlenose Dolphin</h3>
+                        <p class="fw-semibold text-success small mb-2">📍 Oceanarium</p>
+                        <p class="card-text text-body-secondary small flex-grow-1">Playful and friendly aquatic mammals that perform amazing leaps and interact with visitors.</p>
+                        <a href="map.html" class="btn btn-outline-success btn-sm align-self-start">Find on map</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col animal-col" data-category="Aquatic">
+                <div class="card card-zoo h-100">
+                    <div class="position-relative">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/California_Sea_Lion%2C_Monterey%2C_California%2C_United_States_imported_from_iNaturalist_photo_203598492.jpg/1280px-California_Sea_Lion%2C_Monterey%2C_California%2C_United_States_imported_from_iNaturalist_photo_203598492.jpg" class="card-img-top" alt="California Sea Lion">
+                        <span class="badge text-bg-success position-absolute top-0 end-0 m-2">Aquatic</span>
+                    </div>
+                    <div class="card-body d-flex flex-column p-3">
+                        <h3 class="card-title h5 mb-1">California Sea Lion</h3>
+                        <p class="fw-semibold text-success small mb-2">📍 Sea Lion Pool</p>
+                        <p class="card-text text-body-secondary small flex-grow-1">Agile swimmers that love splashing around and showing off during daily feeding shows.</p>
+                        <a href="map.html" class="btn btn-outline-success btn-sm align-self-start">Find on map</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <p class="text-center text-body-secondary d-none mt-4" id="animal-empty">No animals match your search. Try another name or category.</p>
+
+        <div class="text-center mb-4 mt-5">
+            <h2 class="mb-1">Photo Gallery</h2>
+            <p class="text-body-secondary mb-0">Moments from around the park</p>
+        </div>
+        <!-- Task 7: carousel with 9 images, indicators and controls, aligned in the grid -->
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-10">
+                <div id="zooCarousel" class="carousel slide" data-bs-ride="carousel" aria-label="Animal photo gallery">
+                    <div class="carousel-indicators">
+                <button type="button" data-bs-target="#zooCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1: African Lion"></button>
+                <button type="button" data-bs-target="#zooCarousel" data-bs-slide-to="1" aria-label="Slide 2: Savannah Giraffe"></button>
+                <button type="button" data-bs-target="#zooCarousel" data-bs-slide-to="2" aria-label="Slide 3: African Elephant"></button>
+                <button type="button" data-bs-target="#zooCarousel" data-bs-slide-to="3" aria-label="Slide 4: Capuchin Monkey"></button>
+                <button type="button" data-bs-target="#zooCarousel" data-bs-slide-to="4" aria-label="Slide 5: Greater Flamingo"></button>
+                <button type="button" data-bs-target="#zooCarousel" data-bs-slide-to="5" aria-label="Slide 6: Scarlet Macaw"></button>
+                <button type="button" data-bs-target="#zooCarousel" data-bs-slide-to="6" aria-label="Slide 7: Emperor Penguin"></button>
+                <button type="button" data-bs-target="#zooCarousel" data-bs-slide-to="7" aria-label="Slide 8: Bottlenose Dolphin"></button>
+                <button type="button" data-bs-target="#zooCarousel" data-bs-slide-to="8" aria-label="Slide 9: California Sea Lion"></button>
+                    </div>
+                    <div class="carousel-inner rounded-4 shadow">
+                <div class="carousel-item active">
+                    <img src="https://images.unsplash.com/photo-1534188753412-3e26d0d618d6?w=800&auto=format&fit=crop&q=60" class="d-block w-100" alt="African Lion in the Safari Zone">
+                    <div class="carousel-caption"><h3 class="h5 mb-0">African Lion</h3></div>
+                </div>
+                <div class="carousel-item">
+                    <img src="https://storage.yandexcloud.net/storage.yasno.media/nat-geo/images/2019/5/16/1c0c018cd1194147be6833cdbdc05bfb.max-1200x800.jpg" class="d-block w-100" alt="Savannah Giraffe in the African Savannah">
+                    <div class="carousel-caption"><h3 class="h5 mb-0">Savannah Giraffe</h3></div>
+                </div>
+                <div class="carousel-item">
+                    <img src="https://images.unsplash.com/photo-1557050543-4d5f4e07ef46?w=800&auto=format&fit=crop&q=60" class="d-block w-100" alt="African Elephant in the Elephant Kingdom">
+                    <div class="carousel-caption"><h3 class="h5 mb-0">African Elephant</h3></div>
+                </div>
+                <div class="carousel-item">
+                    <img src="https://images.unsplash.com/photo-1540573133985-87b6da6d54a9?w=800&auto=format&fit=crop&q=60" class="d-block w-100" alt="Capuchin Monkey in the Monkey Island">
+                    <div class="carousel-caption"><h3 class="h5 mb-0">Capuchin Monkey</h3></div>
+                </div>
+                <div class="carousel-item">
+                    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Greater_flamingos_(Phoenicopterus_roseus)_resting.jpg?width=800" class="d-block w-100" alt="Greater Flamingo in the Bird Lagoon">
+                    <div class="carousel-caption"><h3 class="h5 mb-0">Greater Flamingo</h3></div>
+                </div>
+                <div class="carousel-item">
+                    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Scarlet_macaw_(Ara_macao_cyanopterus)_Copan.jpg?width=800" class="d-block w-100" alt="Scarlet Macaw in the Tropical Aviary">
+                    <div class="carousel-caption"><h3 class="h5 mb-0">Scarlet Macaw</h3></div>
+                </div>
+                <div class="carousel-item">
+                    <img src="https://images.unsplash.com/photo-1598439210625-5067c578f3f6?w=800&auto=format&fit=crop&q=60" class="d-block w-100" alt="Emperor Penguin in the Polar Pavilion">
+                    <div class="carousel-caption"><h3 class="h5 mb-0">Emperor Penguin</h3></div>
+                </div>
+                <div class="carousel-item">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/8/87/Tursiops_aduncus%2C_Port_River%2C_Adelaide%2C_Australia_-_2003.jpg" class="d-block w-100" alt="Bottlenose Dolphin in the Oceanarium">
+                    <div class="carousel-caption"><h3 class="h5 mb-0">Bottlenose Dolphin</h3></div>
+                </div>
+                <div class="carousel-item">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/California_Sea_Lion%2C_Monterey%2C_California%2C_United_States_imported_from_iNaturalist_photo_203598492.jpg/1280px-California_Sea_Lion%2C_Monterey%2C_California%2C_United_States_imported_from_iNaturalist_photo_203598492.jpg" class="d-block w-100" alt="California Sea Lion in the Sea Lion Pool">
+                    <div class="carousel-caption"><h3 class="h5 mb-0">California Sea Lion</h3></div>
+                </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#zooCarousel" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#zooCarousel" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-dark text-white text-center mt-5 py-4 px-3">
+        <p class="mb-0">Developers: Jumabay Saule, Ramazan Mukhan, Nurdaulet Rashken, Saidazimov Mukhammadjan | Group SE-2501</p>
+    </footer>
+
+
+    <!-- Task 3: subscription popup (hidden by default, opened by js/popup.js) -->
+    <div class="popup-overlay" id="subscribePopup" role="dialog" aria-modal="true" aria-labelledby="popupTitle" aria-hidden="true">
+        <div class="popup-box p-4 p-sm-5">
+            <button type="button" class="popup-close" data-popup-close data-sound="click" aria-label="Close subscription form">&times;</button>
+            <h2 id="popupTitle" class="h3 mb-2">Subscribe to City Zoo News</h2>
+            <p class="text-body-secondary mb-4">Get news about new animals, events and special offers straight to your inbox.</p>
+            <form id="subscribe-form" action="#" method="post" novalidate data-validate-form>
+                <div class="mb-3">
+                    <label for="sub-name" class="form-label fw-semibold">Your Name</label>
+                    <input type="text" class="form-control" id="sub-name" name="name" placeholder="Enter your name" data-validate="name" required>
+                    <div class="invalid-feedback" role="alert"></div>
+                </div>
+                <div class="mb-3">
+                    <label for="sub-email" class="form-label fw-semibold">Email Address</label>
+                    <input type="email" class="form-control" id="sub-email" name="email" placeholder="example@mail.com" data-validate="email" required>
+                    <div class="invalid-feedback" role="alert"></div>
+                </div>
+                <div class="alert alert-success form-success d-none" role="status" tabindex="-1">🎉 Thank you! You are now subscribed to City Zoo news.</div>
+                <div class="d-flex flex-wrap gap-2">
+                    <button type="submit" class="btn btn-success btn-lg">Subscribe</button>
+                    <button type="button" class="btn btn-outline-secondary btn-lg" data-popup-close>Close</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Task 4: background colour button -->
+    <button type="button" class="btn btn-warning rounded-pill px-3 bg-color-btn" id="bgColorBtn" data-sound="click" aria-label="Change page background colour">🎨 Background: <span class="bg-color-name">Zoo Mist</span></button>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/sounds.js"></script>
+    <script src="js/theme.js"></script>
+    <script src="js/validation.js"></script>
+    <script src="js/accordion.js"></script>
+    <script src="js/popup.js"></script>
+    <script src="js/background.js"></script>
+    <script src="js/datetime.js"></script>
+    <script src="js/keyboard.js"></script>
+    <script src="js/animals.js"></script>
+</body>
+</html>

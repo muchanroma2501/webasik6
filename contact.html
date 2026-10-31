@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>City Zoo - Contact Us</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <script defer src="https://code.jquery.com/jquery-4.0.0.min.js"></script>
+    <script defer src="js/jquery-assignment.js"></script>
+</head>
+<body>
+    <a class="visually-hidden-focusable" href="#main">Skip to main content</a>
+
+    <!-- Date / time (js/datetime.js), Day-Night theme (js/theme.js) and sound switch (js/sounds.js) -->
+    <div class="datetime-bar d-flex flex-wrap justify-content-center align-items-center gap-2 gap-sm-3 py-1 px-3" aria-label="Current date and time, theme and sound settings">
+        <span>🕒 <time id="current-datetime">Loading…</time></span>
+        <button type="button" class="bar-btn" id="themeToggle" aria-pressed="false">🌙 Night mode</button>
+        <button type="button" class="bar-btn" id="soundToggle" aria-pressed="false">🔇 Sound off</button>
+    </div>
+
+    <header class="sticky-top">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark navbar-zoo shadow" aria-label="Main navigation" aria-keyshortcuts="ArrowLeft ArrowRight">
+        <div class="container">
+            <a class="navbar-brand fw-bold fs-4" href="index.html">🦁 City Zoo</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="mainNav">
+                <ul class="navbar-nav ms-auto gap-lg-1 py-2 py-lg-0">
+                    <li class="nav-item"><a class="nav-link fw-semibold rounded-pill px-3" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link fw-semibold rounded-pill px-3" href="animals.html">Animals</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle fw-semibold rounded-pill px-3" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Visit</a>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item" href="tickets.html">Tickets</a></li>
+                            <li><a class="dropdown-item" href="schedule.html">Schedule</a></li>
+                            <li><a class="dropdown-item" href="map.html">Map</a></li>
+                            <li><a class="dropdown-item" href="rules.html">Rules</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link fw-semibold rounded-pill px-3" href="about.html">About Us</a></li>
+                    <li class="nav-item"><a class="nav-link active fw-semibold rounded-pill px-3" aria-current="page" href="contact.html">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link fw-semibold rounded-pill px-3" href="register.html">Sign Up</a></li>
+                    <li class="nav-item ms-lg-2"><button type="button" class="btn btn-warning btn-sm rounded-pill px-3 fw-semibold" data-popup-open="subscribePopup" data-sound="pop">Subscribe</button></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    </header>
+
+    <main id="main" class="container page-card my-4 mt-lg-5 px-3 px-sm-4 py-4 py-lg-5">
+        <div class="mb-4">
+            <h1 class="pb-2 mb-2">Contact Us</h1>
+            <p class="lead text-body-secondary mb-0">Fill out the form below to send us an inquiry or feedback about your visit.</p>
+        </div>
+
+        <div class="row">
+            <div class="col-12 col-lg-8">
+                <form id="contact-form" action="#" method="post" novalidate data-validate-form>
+                    <div class="row g-3">
+                        <div class="col-12 col-md-6">
+                            <label for="name" class="form-label fw-semibold">Your Name</label>
+                            <input type="text" class="form-control" id="name" name="name" placeholder="Enter your full name" data-validate="name" required>
+                            <div class="invalid-feedback" role="alert"></div>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <label for="email" class="form-label fw-semibold">Email Address</label>
+                            <div class="input-group">
+                                <span class="input-group-text" id="email-addon">@</span>
+                                <input type="email" class="form-control" id="email" name="email" placeholder="example@mail.com" aria-describedby="email-addon" data-validate="email" required>
+                                <div class="invalid-feedback" role="alert"></div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <label for="section" class="form-label fw-semibold">Favorite Zoo Section</label>
+                            <select class="form-select" id="section" name="section">
+                                <option value="safari">Safari Park</option>
+                                <option value="aquarium">Aquarium</option>
+                                <option value="birds">Aviary &amp; Birds</option>
+                                <option value="reptiles">Reptile House</option>
+                            </select>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <label for="color" class="form-label fw-semibold">Mascot Theme Color</label>
+                            <input type="color" class="form-control form-control-color w-100" id="color" name="color" value="#2d6a4f" title="Choose your color">
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <label for="visitors" class="form-label fw-semibold">Group Size</label>
+                            <div class="input-group">
+                                <input type="number" class="form-control" id="visitors" name="visitors" min="1" value="1" aria-describedby="visitors-addon" data-validate="group" required>
+                                <span class="input-group-text" id="visitors-addon">people</span>
+                                <div class="invalid-feedback" role="alert"></div>
+                            </div>
+                        </div>
+                        <fieldset class="col-12 col-md-6">
+                            <legend class="form-label fw-semibold fs-6">Visiting as</legend>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="visitType" id="v-family" value="family" checked>
+                                <label class="form-check-label" for="v-family">Family</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="visitType" id="v-school" value="school">
+                                <label class="form-check-label" for="v-school">School</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="visitType" id="v-solo" value="solo">
+                                <label class="form-check-label" for="v-solo">Solo</label>
+                            </div>
+                        </fieldset>
+                        <div class="col-12">
+                            <label for="message" class="form-label fw-semibold">Your Message</label>
+                            <textarea class="form-control" id="message" name="message" rows="5" placeholder="Type your message here..." data-validate="message" required></textarea>
+                            <div class="invalid-feedback" role="alert"></div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="newsletter" name="newsletter">
+                                <label class="form-check-label" for="newsletter">Send me news about new animals and events</label>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="alert alert-success form-success d-none mb-0" role="status" tabindex="-1">✅ Thank you! Your message has been sent. We will reply soon.</div>
+                        </div>
+                        <div class="col-12 d-flex flex-wrap gap-2">
+                            <button type="submit" class="btn btn-success btn-lg">Submit Form</button>
+                            <button type="reset" class="btn btn-outline-secondary btn-lg">Reset</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-dark text-white text-center mt-5 py-4 px-3">
+        <p class="mb-0">Developers: Jumabay Saule, Ramazan Mukhan, Nurdaulet Rashken, Saidazimov Mukhammadjan | Group SE-2501</p>
+    </footer>
+
+
+    <!-- Task 3: subscription popup (hidden by default, opened by js/popup.js) -->
+    <div class="popup-overlay" id="subscribePopup" role="dialog" aria-modal="true" aria-labelledby="popupTitle" aria-hidden="true">
+        <div class="popup-box p-4 p-sm-5">
+            <button type="button" class="popup-close" data-popup-close data-sound="click" aria-label="Close subscription form">&times;</button>
+            <h2 id="popupTitle" class="h3 mb-2">Subscribe to City Zoo News</h2>
+            <p class="text-body-secondary mb-4">Get news about new animals, events and special offers straight to your inbox.</p>
+            <form id="subscribe-form" action="#" method="post" novalidate data-validate-form>
+                <div class="mb-3">
+                    <label for="sub-name" class="form-label fw-semibold">Your Name</label>
+                    <input type="text" class="form-control" id="sub-name" name="name" placeholder="Enter your name" data-validate="name" required>
+                    <div class="invalid-feedback" role="alert"></div>
+                </div>
+                <div class="mb-3">
+                    <label for="sub-email" class="form-label fw-semibold">Email Address</label>
+                    <input type="email" class="form-control" id="sub-email" name="email" placeholder="example@mail.com" data-validate="email" required>
+                    <div class="invalid-feedback" role="alert"></div>
+                </div>
+                <div class="alert alert-success form-success d-none" role="status" tabindex="-1">🎉 Thank you! You are now subscribed to City Zoo news.</div>
+                <div class="d-flex flex-wrap gap-2">
+                    <button type="submit" class="btn btn-success btn-lg">Subscribe</button>
+                    <button type="button" class="btn btn-outline-secondary btn-lg" data-popup-close>Close</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Task 4: background colour button -->
+    <button type="button" class="btn btn-warning rounded-pill px-3 bg-color-btn" id="bgColorBtn" data-sound="click" aria-label="Change page background colour">🎨 Background: <span class="bg-color-name">Zoo Mist</span></button>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/sounds.js"></script>
+    <script src="js/theme.js"></script>
+    <script src="js/validation.js"></script>
+    <script src="js/accordion.js"></script>
+    <script src="js/popup.js"></script>
+    <script src="js/background.js"></script>
+    <script src="js/datetime.js"></script>
+    <script src="js/keyboard.js"></script>
+</body>
+</html>

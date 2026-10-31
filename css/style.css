@@ -1,0 +1,328 @@
+/* =====================================================================
+   CITY ZOO — THEME ON TOP OF BOOTSTRAP 5.3   (Assignment #3)
+   Layout comes from the Bootstrap grid (row / col-*), spacing comes from
+   Bootstrap utilities (m-*, p-*, mt-lg-*, px-sm-*, gap-*). This file only
+   holds the brand colours, decoration and the responsive typography
+   media queries — it contains NO custom margin / padding rules.
+   ===================================================================== */
+
+:root {
+  --dark: #0b3d2e;
+  --primary: #1b4332;
+  --primary-2: #2d6a4f;
+  --accent: #52b788;
+  --accent-soft: #d8f3dc;
+  --gold: #e9b44c;
+  --bg: #f4f7f5;
+  --border: #e3e9e5;
+  --text: #203327;
+  --surface: #ffffff;
+  --heading: #1b4332;
+  --radius-md: 14px;
+  --radius-lg: 22px;
+  --shadow-sm: 0 2px 8px rgba(11, 61, 46, 0.06);
+  --shadow-md: 0 8px 24px rgba(11, 61, 46, 0.10);
+
+  /* re-colour Bootstrap's "success" to the zoo green (white text keeps AA contrast) */
+  --bs-success: #2d6a4f;
+  --bs-success-rgb: 45, 106, 79;
+  --bs-link-color: #2d6a4f;
+  --bs-link-hover-color: #1b4332;
+  --bs-body-color: #203327;
+  --bs-body-bg: #f4f7f5;
+  --bs-font-sans-serif: "Segoe UI", system-ui, Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* ---------- 1. Task 1 — responsive typography (mobile first) ---------- */
+html { scroll-behavior: smooth; }
+h1, h2, h3 { color: var(--heading); font-weight: 700; }
+h1 { font-size: 1.7rem; display: inline-block; border-bottom: 4px solid var(--accent); }
+h2 { font-size: 1.3rem; }
+body { font-size: 0.97rem; }
+
+@media (min-width: 768px) {            /* tablet */
+  body { font-size: 1rem; }
+  h1 { font-size: 2.1rem; }
+  h2 { font-size: 1.5rem; }
+}
+@media (min-width: 1200px) {           /* desktop */
+  body { font-size: 1.05rem; }
+  h1 { font-size: 2.5rem; }
+  h2 { font-size: 1.75rem; }
+}
+
+/* ---------- 2. Bootstrap component tuning ---------- */
+.navbar-zoo { background: linear-gradient(135deg, var(--dark), var(--primary)) !important; }
+.navbar-zoo .nav-link { color: #e6f3ea; }
+.navbar-zoo .nav-link:hover, .navbar-zoo .nav-link:focus { background-color: var(--accent); color: var(--dark); }
+.navbar-zoo .nav-link.active { background-color: var(--gold); color: var(--dark); }
+.dropdown-menu .dropdown-item.active { background-color: var(--primary-2); color: #fff; }
+
+.btn-success {
+  --bs-btn-bg: #2d6a4f; --bs-btn-border-color: #2d6a4f; --bs-btn-color: #fff;
+  --bs-btn-hover-bg: #1b4332; --bs-btn-hover-border-color: #1b4332; --bs-btn-hover-color: #fff;
+  --bs-btn-active-bg: #0b3d2e; --bs-btn-active-border-color: #0b3d2e;
+}
+.btn-outline-success {
+  --bs-btn-color: #2d6a4f; --bs-btn-border-color: #2d6a4f;
+  --bs-btn-hover-bg: #2d6a4f; --bs-btn-hover-border-color: #2d6a4f; --bs-btn-hover-color: #fff;
+  --bs-btn-active-bg: #1b4332; --bs-btn-active-border-color: #1b4332;
+}
+.btn-check:checked + .btn-outline-success { background-color: #2d6a4f; color: #fff; }
+.btn-check:focus-visible + .btn { outline: 3px solid var(--gold); outline-offset: 2px; }
+.btn, .form-control, .form-select { --bs-border-radius: 10px; }
+.btn-lg { --bs-btn-border-radius: 30px; }
+.btn-group > .btn { --bs-btn-border-radius: 8px; }
+
+.alert-success { --bs-alert-bg: var(--accent-soft); --bs-alert-color: var(--dark); --bs-alert-border-color: #74c69d; }
+.list-group-item-success { background-color: var(--accent-soft); color: var(--text); }
+.table-zoo { --bs-table-bg: var(--primary); --bs-table-color: #fff; }
+.table-zoo th { background-color: var(--primary); color: #fff; }
+
+/* ---------- 3. Page shell ---------- */
+body { background-color: var(--bg); }
+.page-card { background-color: var(--surface); border-radius: var(--radius-lg); box-shadow: var(--shadow-md); }
+.visually-hidden-focusable:focus { position: fixed; top: 8px; left: 8px; z-index: 2000; background: #fff; color: var(--dark); border-radius: 8px; }
+:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; }
+
+/* ---------- 4. Hero (home) ---------- */
+.hero-card {
+  position: relative; overflow: hidden; height: 300px;
+  border-radius: var(--radius-lg); box-shadow: var(--shadow-md);
+  background: url('https://images.unsplash.com/photo-1534567153574-2b12153a87f0?q=80&w=1200') center/cover no-repeat;
+}
+.hero-overlay { background: linear-gradient(180deg, rgba(11,61,46,.25) 0%, rgba(11,61,46,.92) 100%); }
+.hero-overlay h1 { color: #fff; border-bottom-color: var(--gold); }
+.mw-hero { max-width: 600px; }
+@media (min-width: 768px)  { .hero-card { height: 360px; } }
+@media (min-width: 1200px) { .hero-card { height: 420px; } }
+
+.stat-item { border-bottom: 4px solid var(--gold); }
+.side-img { max-height: 320px; object-fit: cover; }
+.rules-img { max-height: 340px; object-fit: cover; }
+
+/* ---------- 5. Cards ---------- */
+.card-zoo { border: 1px solid var(--border); border-radius: var(--radius-md); box-shadow: var(--shadow-sm); overflow: visible; transition: transform .25s ease, box-shadow .25s ease; }
+.card-zoo:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+.card-zoo .card-img-top { height: 190px; object-fit: cover; border-radius: var(--radius-md) var(--radius-md) 0 0; }
+.card-group .card-zoo { border-radius: 0; }
+.card-group .card-zoo:first-child, .card-group .card-zoo:first-child .card-img-top { border-top-left-radius: var(--radius-md); }
+.card-group .card-zoo:last-child, .card-group .card-zoo:last-child .card-img-top { border-top-right-radius: var(--radius-md); }
+@media (max-width: 575.98px) {
+  .card-group .card-zoo { border-radius: var(--radius-md); }
+}
+
+/* Home feature cards: stacked on phones, two columns on tablets, three on desktop. */
+.why-visit-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+.why-visit-card {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+.why-visit-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+@media (min-width: 600px) {
+  .why-visit-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (min-width: 992px) {
+  .why-visit-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+/* ---------- 6. Carousel ---------- */
+.carousel-item img { height: 260px; object-fit: cover; }
+@media (min-width: 768px)  { .carousel-item img { height: 380px; } }
+@media (min-width: 1200px) { .carousel-item img { height: 460px; } }
+.carousel-caption { background: rgba(11, 61, 46, .78); border-radius: var(--radius-md); }
+.carousel-caption h3 { color: #fff; }
+.carousel-indicators [data-bs-target] { background-color: #fff; }
+
+/* ---------- 7. Page-specific decoration ---------- */
+.sidebar-box { background-color: var(--primary); }
+.time-badge { background: linear-gradient(135deg, var(--primary), var(--primary-2)); color: #fff; font-weight: 700; min-width: 110px; }
+.event-card { border-left: 5px solid var(--accent); }
+.event-icon { width: 48px; height: 48px; min-width: 48px; }
+
+.legend-icon { width: 34px; height: 34px; min-width: 34px; }
+.legend-badge { width: 16px; height: 16px; display: inline-block; background-color: var(--gold); }
+.map-graphic { background-color: var(--accent-soft); }
+.map-graphic svg { display: block; height: auto; }
+.map-legend { border-left: 5px solid var(--primary-2); }
+
+.rule-card { border-left: 6px solid var(--primary-2); }
+.rule-card.emphasis { border-left-color: var(--gold); }
+.rule-badge { width: 42px; height: 42px; min-width: 42px; background-color: var(--primary); color: #fff; }
+.rule-card.emphasis .rule-badge { background-color: var(--gold); color: var(--dark); }
+
+.avatar-wrapper { width: 128px; height: 128px; }
+.team-avatar { object-fit: cover; border: 4px solid var(--accent); box-shadow: var(--shadow-sm); }
+
+/* ---------- 8. Footer ---------- */
+footer, footer p { color: #fff; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .card-zoo { transition: none; }
+}
+
+/* =====================================================================
+   9. ASSIGNMENT #4 — JavaScript components
+   ===================================================================== */
+
+/* Task 5 — date/time strip above the navbar */
+.datetime-bar { background-color: var(--dark); color: #e6f3ea; font-size: .85rem; }
+.datetime-bar time { font-weight: 600; color: var(--gold); }
+
+/* Task 4 — page background changes smoothly; floating button */
+body { transition: background-color .5s ease; }
+.bg-color-btn { position: fixed; right: 16px; bottom: 16px; z-index: 1500; box-shadow: var(--shadow-md); }
+.bg-color-btn .bg-color-name { font-weight: 700; }
+
+/* Task 2 — accordion */
+.faq-item { background-color: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-md); box-shadow: var(--shadow-sm); overflow: hidden; }
+.faq-question {
+  width: 100%; display: flex; justify-content: space-between; align-items: center; gap: 1rem;
+  padding: 1rem 1.25rem; border: 0; background-color: var(--accent-soft);
+  color: var(--heading); font-weight: 600; font-size: 1rem; text-align: left; cursor: pointer;
+  transition: background-color .25s ease, color .25s ease;
+}
+.faq-question:hover { background-color: #bfe8cb; }
+.faq-question[aria-expanded="true"] { background-color: var(--primary-2); color: #fff; }
+.faq-icon { font-size: 1.5rem; line-height: 1; transition: transform .3s ease; flex-shrink: 0; }
+.faq-question[aria-expanded="true"] .faq-icon { transform: rotate(45deg); }
+.faq-answer { overflow: hidden; transition: max-height .35s ease; }
+
+/* Task 3 — popup */
+.popup-overlay {
+  position: fixed; inset: 0; z-index: 2000; display: none;
+  align-items: center; justify-content: center; padding: 1rem; overflow-y: auto;
+  background-color: rgba(11, 61, 46, .65);
+}
+.popup-overlay.is-open { display: flex; animation: popupFade .25s ease; }
+.popup-box {
+  position: relative; width: 100%; max-width: 440px; max-height: 100%; overflow-y: auto;
+  background-color: var(--surface); border-radius: var(--radius-lg); box-shadow: var(--shadow-md);
+  border-top: 6px solid var(--gold);
+}
+.popup-close {
+  position: absolute; top: .5rem; right: .75rem; width: 40px; height: 40px;
+  border: 0; border-radius: 50%; background: transparent; color: var(--heading);
+  font-size: 2rem; line-height: 1; cursor: pointer;
+}
+.popup-close:hover { background-color: var(--accent-soft); }
+body.popup-lock { overflow: hidden; }
+@keyframes popupFade { from { opacity: 0; transform: translateY(-12px); } to { opacity: 1; transform: none; } }
+
+/* Task 1 — validation tweaks */
+.form-control.is-invalid, .form-select.is-invalid { border-color: #b02a37; }
+.invalid-feedback { font-weight: 600; }
+.form-success:focus { outline: 3px solid var(--gold); }
+
+@media (prefers-reduced-motion: reduce) {
+  body, .faq-answer, .faq-icon, .faq-question { transition: none; }
+  .popup-overlay.is-open { animation: none; }
+}
+
+
+/* =====================================================================
+   10. ASSIGNMENT #5 — Advanced JavaScript features
+   ===================================================================== */
+
+/* ---- Day / Night theme (js/theme.js sets data-bs-theme on <html>) ---- */
+:root[data-bs-theme="dark"] {
+  --bg: #0d1b14;
+  --surface: #172a20;
+  --border: #31513f;
+  --text: #e5f1e9;
+  --heading: #c5efd3;
+  --accent: #72d6a0;
+  --accent-soft: #224634;
+  --bs-body-color: #e5f1e9;
+  --bs-body-bg: #0d1b14;
+  --bs-link-color: #83dfad;
+  --bs-link-hover-color: #c5efd3;
+  --bs-secondary-color: #b3c6ba;
+}
+:root[data-bs-theme="dark"] .faq-question:hover { background-color: #2d5943; }
+:root[data-bs-theme="dark"] .stat-item { background-color: #203a2d !important; }
+:root[data-bs-theme="dark"] .stat-item .text-success,
+:root[data-bs-theme="dark"] .text-success { color: #83dfad !important; }
+:root[data-bs-theme="dark"] .border-success { border-color: #72d6a0 !important; }
+:root[data-bs-theme="dark"] .btn-outline-success { --bs-btn-color: #83dfad; --bs-btn-border-color: #72d6a0; }
+:root[data-bs-theme="dark"] .form-control, :root[data-bs-theme="dark"] .form-select { background-color: #0d1b14; color: #e5f1e9; border-color: #456653; }
+:root[data-bs-theme="dark"] .form-control::placeholder { color: #9eb4a6; opacity: 1; }
+:root[data-bs-theme="dark"] .bg-light { background-color: #20382d !important; color: #e5f1e9; }
+:root[data-bs-theme="dark"] .text-dark { color: #e5f1e9 !important; }
+:root[data-bs-theme="dark"] .badge.text-bg-light { background-color: #294a38 !important; color: #e5f1e9 !important; }
+:root[data-bs-theme="dark"] .alert-success { --bs-alert-bg: #1b3b2c; --bs-alert-color: #d9f2e2; --bs-alert-border-color: #4d9b70; }
+:root[data-bs-theme="dark"] .zoo-search-suggestions { background-color: #20382d; border-color: #456653; }
+:root[data-bs-theme="dark"] .zoo-suggestion { color: #e5f1e9; }
+:root[data-bs-theme="dark"] .zoo-suggestion:hover,
+:root[data-bs-theme="dark"] .zoo-suggestion:focus { background-color: #2d5943; }
+:root[data-bs-theme="dark"] .map-graphic svg { filter: brightness(.88) saturate(.9); }
+body, .page-card, .card-zoo, .why-visit-card, .faq-item, .popup-box { transition: background-color .5s ease, color .5s ease, border-color .5s ease; }
+
+/* ---- top bar: date/time + theme + sound switches ---- */
+.bar-btn {
+  background: transparent; color: #fff; border: 1px solid rgba(255, 255, 255, .45);
+  border-radius: 999px; padding: .05rem .75rem; font-size: .8rem; cursor: pointer;
+  transition: background-color .2s ease, transform .2s ease;
+}
+.bar-btn:hover { background-color: rgba(255, 255, 255, .18); transform: translateY(-1px); }
+
+/* ---- hero greeting ---- */
+.hero-greeting { color: var(--gold); text-shadow: 0 1px 4px rgba(0, 0, 0, .5); }
+
+/* ---- star rating ---- */
+.star-rating { display: inline-flex; gap: .25rem; }
+.star {
+  background: none; border: 0; padding: 0 .1rem; font-size: 2.6rem; line-height: 1;
+  color: #c4cfc8; cursor: pointer; transition: color .2s ease, transform .22s ease;
+}
+.star.preview { color: #f3d78f; }
+.star.selected { color: var(--gold); text-shadow: 0 2px 8px rgba(233, 180, 76, .55); }
+.star:hover { transform: scale(1.18); }
+.rating-message { min-height: 1.6rem; }
+
+/* ---- random fact card ---- */
+.fact-card { border-left: 6px solid var(--gold); }
+.fact-emoji { font-size: 3rem; line-height: 1; }
+.fact-animate { animation: factIn .5s ease; }
+@keyframes factIn { from { opacity: 0; transform: translateY(14px) scale(.97); } to { opacity: 1; transform: none; } }
+
+/* ---- animal cards pop in after filtering ---- */
+.card-pop { animation: cardPop .4s ease; }
+@keyframes cardPop { from { opacity: 0; transform: scale(.92); } to { opacity: 1; transform: none; } }
+
+/* ---- multi-step booking form ---- */
+.wizard-step { display: none; border: 0; padding: 0; margin: 0; min-width: 0; }
+.wizard-step.is-active { display: block; animation: stepIn .35s ease; }
+.wizard-step legend { font-size: 1.15rem; font-weight: 700; color: var(--heading); }
+.wizard-progress-bar { width: 0; transition: width .4s ease; }
+.wizard-summary { background-color: var(--accent-soft); border-radius: var(--radius-md); }
+@keyframes stepIn { from { opacity: 0; transform: translateX(24px); } to { opacity: 1; transform: none; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .fact-animate, .card-pop, .wizard-step.is-active { animation: none; }
+  .star, .wizard-progress-bar { transition: none; }
+}
+
+
+/* Assignment 6: jQuery search and engagement components */
+.scroll-progress { position: fixed; z-index: 1100; inset: 0 0 auto; height: 5px; pointer-events: none; background: rgba(255,255,255,.22); }
+.scroll-progress span { display: block; width: 0; height: 100%; background: linear-gradient(90deg,#30c48d,#ffc107,#ff6b6b); box-shadow: 0 0 10px rgba(48,196,141,.7); transition: width .08s linear; }
+.zoo-search { position: relative; z-index: 5; padding: 1rem; border: 1px solid rgba(25,135,84,.2); border-radius: 1rem; background: linear-gradient(135deg,rgba(25,135,84,.06),rgba(255,193,7,.08)); }
+.zoo-search-wrap { position: relative; }
+.zoo-search-suggestions { position: absolute; z-index: 20; top: calc(100% + .25rem); left: 0; right: 0; max-height: 16rem; overflow-y: auto; margin: 0; padding: .35rem; list-style: none; border: 1px solid #d8e3dc; border-radius: .75rem; background: #fff; box-shadow: 0 .75rem 1.5rem rgba(0,0,0,.14); }
+.zoo-suggestion { width: 100%; padding: .55rem .75rem; border: 0; border-radius: .45rem; background: transparent; text-align: left; color: #183b2b; }
+.zoo-suggestion:hover,.zoo-suggestion:focus { background: #e9f5ee; outline: 2px solid #198754; }
+.search-highlight { padding: 0 .08em; border-radius: .2em; color: #342700; background: #ffe27a; box-shadow: 0 0 0 1px rgba(231,166,0,.18); }
+.zoo-toast { position: fixed; z-index: 1200; right: 1rem; bottom: 1rem; max-width: min(24rem,calc(100vw - 2rem)); padding: .85rem 1.1rem; border-radius: .8rem; background: #183b2b; color: white; box-shadow: 0 .75rem 2rem rgba(0,0,0,.2); opacity: 0; transform: translateY(.75rem); pointer-events: none; transition: opacity .25s ease,transform .25s ease; }
+.zoo-toast.is-visible { opacity: 1; transform: translateY(0); }
+[data-copy-target].is-copied { color: #fff; background: #198754; }
+img.is-loaded { animation: image-arrive .25s ease-out; }
+@keyframes image-arrive { from { opacity: .55; } to { opacity: 1; } }
+@media (prefers-reduced-motion: reduce) { .scroll-progress span,.zoo-toast { transition: none; } img.is-loaded { animation: none; } }

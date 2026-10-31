@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>City Zoo - Park Map</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <script defer src="https://code.jquery.com/jquery-4.0.0.min.js"></script>
+    <script defer src="js/jquery-assignment.js"></script>
+</head>
+<body>
+    <a class="visually-hidden-focusable" href="#main">Skip to main content</a>
+
+    <!-- Date / time (js/datetime.js), Day-Night theme (js/theme.js) and sound switch (js/sounds.js) -->
+    <div class="datetime-bar d-flex flex-wrap justify-content-center align-items-center gap-2 gap-sm-3 py-1 px-3" aria-label="Current date and time, theme and sound settings">
+        <span>🕒 <time id="current-datetime">Loading…</time></span>
+        <button type="button" class="bar-btn" id="themeToggle" aria-pressed="false">🌙 Night mode</button>
+        <button type="button" class="bar-btn" id="soundToggle" aria-pressed="false">🔇 Sound off</button>
+    </div>
+
+    <header class="sticky-top">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark navbar-zoo shadow" aria-label="Main navigation" aria-keyshortcuts="ArrowLeft ArrowRight">
+        <div class="container">
+            <a class="navbar-brand fw-bold fs-4" href="index.html">🦁 City Zoo</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="mainNav">
+                <ul class="navbar-nav ms-auto gap-lg-1 py-2 py-lg-0">
+                    <li class="nav-item"><a class="nav-link fw-semibold rounded-pill px-3" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link fw-semibold rounded-pill px-3" href="animals.html">Animals</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle active fw-semibold rounded-pill px-3" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Visit</a>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item" href="tickets.html">Tickets</a></li>
+                            <li><a class="dropdown-item" href="schedule.html">Schedule</a></li>
+                            <li><a class="dropdown-item active" aria-current="page" href="map.html">Map</a></li>
+                            <li><a class="dropdown-item" href="rules.html">Rules</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link fw-semibold rounded-pill px-3" href="about.html">About Us</a></li>
+                    <li class="nav-item"><a class="nav-link fw-semibold rounded-pill px-3" href="contact.html">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link fw-semibold rounded-pill px-3" href="register.html">Sign Up</a></li>
+                    <li class="nav-item ms-lg-2"><button type="button" class="btn btn-warning btn-sm rounded-pill px-3 fw-semibold" data-popup-open="subscribePopup" data-sound="pop">Subscribe</button></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    </header>
+
+    <main id="main" class="container page-card my-4 mt-lg-5 px-3 px-sm-4 py-4 py-lg-5">
+        <div class="mb-4">
+            <h1 class="pb-2 mb-2">Interactive Park Map</h1>
+            <p class="lead text-body-secondary mb-0">Explore our zoo layout, discover animal zones, cozy cafes, amenities, and main entrances effortlessly.</p>
+        </div>
+
+        <div class="row g-4">
+            <div class="col-12 col-lg-8">
+                <div class="map-graphic rounded-4 overflow-hidden shadow-sm">
+                    <svg viewBox="0 0 600 450" width="100%" role="img" aria-label="Illustrated map of City Zoo showing animal zones, cafe, restrooms and the main entrance">
+                    <defs>
+                        <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+                            <feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#000000" flood-opacity="0.12"/>
+                        </filter>
+                    </defs>
+
+                    <rect width="600" height="450" fill="#95d5b2" rx="18"/>
+                    <path d="M 50 50 Q 300 10 550 50 T 550 400 Q 300 440 50 400 Z" fill="#b7e4c7"/>
+
+                    <path d="M 220 180 Q 280 150 340 200 T 280 280 Q 200 250 220 180 Z" fill="#40916c" filter="url(#shadow)" opacity="0.9"/>
+                    <text x="252" y="225" font-size="12.5" fill="#ffffff" font-weight="bold" font-family="system-ui, sans-serif">Flamingo Lake</text>
+
+                    <path d="M 300 420 L 300 320 Q 300 280 200 260 L 100 260" stroke="#e9b44c" stroke-width="14" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                    <path d="M 300 320 L 450 320 L 450 120 L 150 120 L 150 260" stroke="#e9b44c" stroke-width="14" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+
+                    <rect x="80" y="60" width="100" height="80" fill="#ffffff" stroke="#1b4332" stroke-width="2.5" rx="12" filter="url(#shadow)"/>
+                    <text x="105" y="105" font-size="28">🦁</text>
+                    <text x="95" y="125" font-size="11" font-weight="bold" fill="#1b4332">Lions Zone</text>
+
+                    <rect x="400" y="60" width="110" height="80" fill="#ffffff" stroke="#1b4332" stroke-width="2.5" rx="12" filter="url(#shadow)"/>
+                    <text x="440" y="105" font-size="28">🐒</text>
+                    <text x="415" y="125" font-size="11" font-weight="bold" fill="#1b4332">Monkey Island</text>
+
+                    <rect x="380" y="240" width="130" height="100" fill="#ffffff" stroke="#1b4332" stroke-width="2.5" rx="12" filter="url(#shadow)"/>
+                    <text x="405" y="290" font-size="28">🐘</text>
+                    <text x="445" y="290" font-size="28">🦒</text>
+                    <text x="415" y="325" font-size="11" font-weight="bold" fill="#1b4332">Savannah Zone</text>
+
+                    <rect x="80" y="240" width="100" height="100" fill="#ffffff" stroke="#1b4332" stroke-width="2.5" rx="12" filter="url(#shadow)"/>
+                    <text x="110" y="295" font-size="28">🦜</text>
+                    <text x="112" y="320" font-size="11" font-weight="bold" fill="#1b4332">Aviary</text>
+
+                    <g filter="url(#shadow)">
+                        <rect x="250" y="390" width="100" height="32" fill="#e9b44c" rx="8"/>
+                        <text x="256" y="411" font-size="9.5" fill="#0b3d2e" font-weight="bold" font-family="system-ui, sans-serif">MAIN ENTRANCE</text>
+                    </g>
+
+                    <g filter="url(#shadow)">
+                        <circle cx="210" cy="120" r="16" fill="#1b4332"/>
+                        <text x="202" y="126" font-size="16">☕</text>
+                    </g>
+
+                    <g filter="url(#shadow)">
+                        <circle cx="340" cy="320" r="16" fill="#1b4332"/>
+                        <text x="332" y="326" font-size="16">🚻</text>
+                    </g>
+
+                    <g filter="url(#shadow)">
+                        <circle cx="170" cy="200" r="16" fill="#1b4332"/>
+                        <text x="162" y="206" font-size="16">🎈</text>
+                    </g>
+                </svg>
+                </div>
+            </div>
+            <aside class="col-12 col-lg-4" aria-label="Map legend">
+                <div class="map-legend bg-light rounded-4 p-3 p-lg-4">
+                    <h2 class="h5 border-bottom border-success border-2 pb-2 mb-2">Legend / Map Key</h2>
+                    <ul class="list-group list-group-flush">
+                    <li class="list-group-item bg-transparent d-flex align-items-center gap-3 px-0"><span class="legend-icon d-flex align-items-center justify-content-center bg-white rounded-circle shadow-sm" aria-hidden="true">🦁</span><strong class="small">Lion & Predator Enclosures</strong></li>
+                    <li class="list-group-item bg-transparent d-flex align-items-center gap-3 px-0"><span class="legend-icon d-flex align-items-center justify-content-center bg-white rounded-circle shadow-sm" aria-hidden="true">🐘</span><strong class="small">African Savannah (Elephants & Giraffes)</strong></li>
+                    <li class="list-group-item bg-transparent d-flex align-items-center gap-3 px-0"><span class="legend-icon d-flex align-items-center justify-content-center bg-white rounded-circle shadow-sm" aria-hidden="true">🐒</span><strong class="small">Primate House</strong></li>
+                    <li class="list-group-item bg-transparent d-flex align-items-center gap-3 px-0"><span class="legend-icon d-flex align-items-center justify-content-center bg-white rounded-circle shadow-sm" aria-hidden="true">🦜</span><strong class="small">Tropical Birds Aviary</strong></li>
+                    <li class="list-group-item bg-transparent d-flex align-items-center gap-3 px-0"><span class="legend-icon d-flex align-items-center justify-content-center bg-white rounded-circle shadow-sm" aria-hidden="true">🦩</span><strong class="small">Flamingo Lake</strong></li>
+                    <li class="list-group-item bg-transparent d-flex align-items-center gap-3 px-0"><span class="legend-badge rounded-2" aria-hidden="true"></span><strong class="small">Main Entrance & Ticket Office</strong></li>
+                    <li class="list-group-item bg-transparent d-flex align-items-center gap-3 px-0"><span class="legend-icon d-flex align-items-center justify-content-center bg-white rounded-circle shadow-sm" aria-hidden="true">☕</span><strong class="small">Food Court & Eco-Cafe</strong></li>
+                    <li class="list-group-item bg-transparent d-flex align-items-center gap-3 px-0"><span class="legend-icon d-flex align-items-center justify-content-center bg-white rounded-circle shadow-sm" aria-hidden="true">🎈</span><strong class="small">Kids Playground</strong></li>
+                    <li class="list-group-item bg-transparent d-flex align-items-center gap-3 px-0"><span class="legend-icon d-flex align-items-center justify-content-center bg-white rounded-circle shadow-sm" aria-hidden="true">🚻</span><strong class="small">Restrooms / Facilities</strong></li>
+                    </ul>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <footer class="bg-dark text-white text-center mt-5 py-4 px-3">
+        <p class="mb-0">Developers: Jumabay Saule, Ramazan Mukhan, Nurdaulet Rashken, Saidazimov Mukhammadjan | Group SE-2501</p>
+    </footer>
+
+
+    <!-- Task 3: subscription popup (hidden by default, opened by js/popup.js) -->
+    <div class="popup-overlay" id="subscribePopup" role="dialog" aria-modal="true" aria-labelledby="popupTitle" aria-hidden="true">
+        <div class="popup-box p-4 p-sm-5">
+            <button type="button" class="popup-close" data-popup-close data-sound="click" aria-label="Close subscription form">&times;</button>
+            <h2 id="popupTitle" class="h3 mb-2">Subscribe to City Zoo News</h2>
+            <p class="text-body-secondary mb-4">Get news about new animals, events and special offers straight to your inbox.</p>
+            <form id="subscribe-form" action="#" method="post" novalidate data-validate-form>
+                <div class="mb-3">
+                    <label for="sub-name" class="form-label fw-semibold">Your Name</label>
+                    <input type="text" class="form-control" id="sub-name" name="name" placeholder="Enter your name" data-validate="name" required>
+                    <div class="invalid-feedback" role="alert"></div>
+                </div>
+                <div class="mb-3">
+                    <label for="sub-email" class="form-label fw-semibold">Email Address</label>
+                    <input type="email" class="form-control" id="sub-email" name="email" placeholder="example@mail.com" data-validate="email" required>
+                    <div class="invalid-feedback" role="alert"></div>
+                </div>
+                <div class="alert alert-success form-success d-none" role="status" tabindex="-1">🎉 Thank you! You are now subscribed to City Zoo news.</div>
+                <div class="d-flex flex-wrap gap-2">
+                    <button type="submit" class="btn btn-success btn-lg">Subscribe</button>
+                    <button type="button" class="btn btn-outline-secondary btn-lg" data-popup-close>Close</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Task 4: background colour button -->
+    <button type="button" class="btn btn-warning rounded-pill px-3 bg-color-btn" id="bgColorBtn" data-sound="click" aria-label="Change page background colour">🎨 Background: <span class="bg-color-name">Zoo Mist</span></button>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/sounds.js"></script>
+    <script src="js/theme.js"></script>
+    <script src="js/validation.js"></script>
+    <script src="js/accordion.js"></script>
+    <script src="js/popup.js"></script>
+    <script src="js/background.js"></script>
+    <script src="js/datetime.js"></script>
+    <script src="js/keyboard.js"></script>
+</body>
+</html>

@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>City Zoo - Home</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <script defer src="https://code.jquery.com/jquery-4.0.0.min.js"></script>
+    <script defer src="js/jquery-assignment.js"></script>
+</head>
+<body>
+    <a class="visually-hidden-focusable" href="#main">Skip to main content</a>
+
+    <!-- Date / time (js/datetime.js), Day-Night theme (js/theme.js) and sound switch (js/sounds.js) -->
+    <div class="datetime-bar d-flex flex-wrap justify-content-center align-items-center gap-2 gap-sm-3 py-1 px-3" aria-label="Current date and time, theme and sound settings">
+        <span>🕒 <time id="current-datetime">Loading…</time></span>
+        <button type="button" class="bar-btn" id="themeToggle" aria-pressed="false">🌙 Night mode</button>
+        <button type="button" class="bar-btn" id="soundToggle" aria-pressed="false">🔇 Sound off</button>
+    </div>
+
+    <header class="sticky-top">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark navbar-zoo shadow" aria-label="Main navigation" aria-keyshortcuts="ArrowLeft ArrowRight">
+        <div class="container">
+            <a class="navbar-brand fw-bold fs-4" href="index.html">🦁 City Zoo</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="mainNav">
+                <ul class="navbar-nav ms-auto gap-lg-1 py-2 py-lg-0">
+                    <li class="nav-item"><a class="nav-link active fw-semibold rounded-pill px-3" aria-current="page" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link fw-semibold rounded-pill px-3" href="animals.html">Animals</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle fw-semibold rounded-pill px-3" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Visit</a>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item" href="tickets.html">Tickets</a></li>
+                            <li><a class="dropdown-item" href="schedule.html">Schedule</a></li>
+                            <li><a class="dropdown-item" href="map.html">Map</a></li>
+                            <li><a class="dropdown-item" href="rules.html">Rules</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link fw-semibold rounded-pill px-3" href="about.html">About Us</a></li>
+                    <li class="nav-item"><a class="nav-link fw-semibold rounded-pill px-3" href="contact.html">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link fw-semibold rounded-pill px-3" href="register.html">Sign Up</a></li>
+                    <li class="nav-item ms-lg-2"><button type="button" class="btn btn-warning btn-sm rounded-pill px-3 fw-semibold" data-popup-open="subscribePopup" data-sound="pop">Subscribe</button></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    </header>
+
+    <main id="main" class="container page-card my-4 mt-lg-5 px-3 px-sm-4 py-4 py-lg-5">
+        <!-- Hero -->
+        <section class="hero-card mb-4 mb-lg-5" aria-label="Welcome banner">
+            <div class="hero-overlay position-absolute top-0 start-0 w-100 h-100 d-flex flex-column justify-content-end p-3 p-md-4 p-lg-5 text-white">
+                <p class="hero-greeting fw-semibold mb-2" id="hero-greeting" aria-live="polite"></p>
+                <h1 class="text-white pb-2 mb-2">Welcome to City Zoo</h1>
+                <p class="mb-3 mw-hero">Discover wildlife, explore natural habitats, and create unforgettable family memories.</p>
+                <div class="d-flex flex-wrap gap-2">
+                    <a href="tickets.html" class="btn btn-warning btn-lg">Get Tickets</a>
+                    <a href="animals.html" class="btn btn-outline-light btn-lg">Explore Animals</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stats (col-sm-4 x 3) -->
+        <section class="row g-3 mb-4 mb-lg-5" aria-label="Zoo in numbers">
+            <div class="col-12 col-sm-4 col-lg-4">
+                <div class="stat-item bg-light rounded-4 text-center p-3 p-lg-4">
+                    <p class="h2 fw-bold text-success mb-0" data-counter="150" data-counter-suffix="+">0</p>
+                    <p class="small fw-semibold text-body-secondary mb-0">Animal Species</p>
+                </div>
+            </div>
+            <div class="col-12 col-sm-4 col-lg-4">
+                <div class="stat-item bg-light rounded-4 text-center p-3 p-lg-4">
+                    <p class="h2 fw-bold text-success mb-0" data-counter="50" data-counter-suffix=" HA">0</p>
+                    <p class="small fw-semibold text-body-secondary mb-0">Natural Territory</p>
+                </div>
+            </div>
+            <div class="col-12 col-sm-4 col-lg-4">
+                <div class="stat-item bg-light rounded-4 text-center p-3 p-lg-4">
+                    <p class="h2 fw-bold text-success mb-0" data-counter="100" data-counter-suffix="K+">0</p>
+                    <p class="small fw-semibold text-body-secondary mb-0">Happy Visitors</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Task 3: two-column section (col-lg-6) -->
+        <section class="row g-4 align-items-center mb-4 mb-lg-5">
+            <div class="col-12 col-lg-6">
+                <h2>A Day Out in the Wild</h2>
+                <p>City Zoo is home to more than 150 species across 50 hectares of open-air habitats. Walk from the African savannah to the polar pavilion in a single afternoon, meet keepers at the daily shows, and stop for lunch at our eco-cafes.</p>
+                <ul class="list-unstyled mb-3">
+                    <li class="mb-1">🕘 Open daily, 09:00 AM – 06:00 PM</li>
+                    <li class="mb-1">📍 12 Wildlife Ave, Astana</li>
+                    <li class="mb-1">📞 +7 700 123 45 67</li>
+                </ul>
+                <div class="btn-group" role="group" aria-label="Plan your visit">
+                    <a href="schedule.html" class="btn btn-outline-success">Schedule</a>
+                    <a href="map.html" class="btn btn-outline-success">Map</a>
+                    <a href="rules.html" class="btn btn-outline-success">Rules</a>
+                </div>
+            </div>
+            <div class="col-12 col-lg-6">
+                <img src="https://images.unsplash.com/photo-1534188753412-3e26d0d618d6?w=900&auto=format&fit=crop&q=60" class="img-fluid rounded-4 shadow-sm w-100 side-img" alt="A lion resting in the safari zone">
+            </div>
+        </section>
+
+        <div class="text-center mb-4 mt-5">
+            <h2 class="mb-1">Why Visit Us?</h2>
+            <p class="text-body-secondary mb-0">Experience the best wildlife adventure in the city</p>
+        </div>
+        <!-- Three cards use CSS media queries for their layout. -->
+        <section class="why-visit-grid gap-3" aria-label="Why visit City Zoo">
+            <article class="why-visit-card p-3 p-lg-4 text-center">
+                <div class="fs-1 mb-2" aria-hidden="true">🌿</div>
+                <h3 class="h5">Natural Habitats</h3>
+                <p class="text-body-secondary small mb-0">Modern open-air enclosures carefully designed to mimic natural wildlife environments.</p>
+            </article>
+            <article class="why-visit-card p-3 p-lg-4 text-center">
+                <div class="fs-1 mb-2" aria-hidden="true">🍖</div>
+                <h3 class="h5">Daily Feeding Shows</h3>
+                <p class="text-body-secondary small mb-0">Educational interactive sessions and live feeding demonstrations by expert keepers.</p>
+            </article>
+            <article class="why-visit-card p-3 p-lg-4 text-center">
+                <div class="fs-1 mb-2" aria-hidden="true">☕</div>
+                <h3 class="h5">Eco-Cafes &amp; Playgrounds</h3>
+                <p class="text-body-secondary small mb-0">Comfortable recreation zones, family rest areas, playgrounds, and eco-friendly cafes.</p>
+            </article>
+        </section>
+
+        <div class="text-center mb-4 mt-5">
+            <h2 class="mb-1">Featured Experiences</h2>
+            <p class="text-body-secondary mb-0">Book one of our most popular guided experiences</p>
+        </div>
+        <!-- Task 8: Bootstrap cards in a card-group -->
+        <section class="card-group gap-lg-0" aria-label="Featured experiences">
+            <div class="card card-zoo">
+                <img src="https://images.unsplash.com/photo-1547721064-da6cfb341d50?w=800&auto=format&fit=crop&q=60" class="card-img-top" alt="Guided Safari Tour">
+                <div class="card-body d-flex flex-column p-3 p-lg-4">
+                    <h3 class="card-title h5">Guided Safari Tour</h3>
+                    <p class="card-text text-body-secondary flex-grow-1">Ride through the savannah zone with an expert guide and get up close with lions, giraffes, and elephants.</p>
+                    <a href="tickets.html" class="btn btn-success align-self-start">Book Now</a>
+                </div>
+            </div>
+            <div class="card card-zoo">
+                <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Collingwood_Children%27s_Farm_-_plots_and_animals.JPG?width=800" class="card-img-top" alt="Petting Zoo Experience">
+                <div class="card-body d-flex flex-column p-3 p-lg-4">
+                    <h3 class="card-title h5">Petting Zoo Experience</h3>
+                    <p class="card-text text-body-secondary flex-grow-1">A hands-on session where kids and families can safely feed and pet gentle farm animals.</p>
+                    <a href="tickets.html" class="btn btn-success align-self-start">Book Now</a>
+                </div>
+            </div>
+            <div class="card card-zoo">
+                <img src="https://images.unsplash.com/photo-1503919545889-aef636e10ad4?w=800&auto=format&fit=crop&q=60" class="card-img-top" alt="Night Safari Adventure">
+                <div class="card-body d-flex flex-column p-3 p-lg-4">
+                    <h3 class="card-title h5">Night Safari Adventure</h3>
+                    <p class="card-text text-body-secondary flex-grow-1">Discover nocturnal species as they wake up and explore under the stars with a torch-lit guided walk.</p>
+                    <a href="tickets.html" class="btn btn-success align-self-start">Book Now</a>
+                </div>
+            </div>
+        </section>
+
+        <div class="text-center mb-4 mt-5">
+            <h2 class="mb-1">Plan Your Visit in 3 Steps</h2>
+            <p class="text-body-secondary mb-0">New to City Zoo? Here's how to make the most of your day</p>
+        </div>
+        <ol class="list-group list-group-numbered">
+            <li class="list-group-item list-group-item-success p-3"><strong>Buy your ticket online</strong> — choose a Child, Adult, or Free pass on the Tickets page.</li>
+            <li class="list-group-item list-group-item-success p-3"><strong>Check the show schedule</strong> — plan your route around feeding times and guided tours.</li>
+            <li class="list-group-item list-group-item-success p-3"><strong>Follow the interactive map</strong> — find enclosures, cafes, and restrooms with ease.</li>
+        </ol>
+
+        <section class="copy-guide card card-zoo p-3 p-lg-4 mt-4" aria-labelledby="copy-guide-title">
+            <div class="d-flex flex-wrap justify-content-between align-items-center gap-3">
+                <div>
+                    <h2 class="h5 mb-1" id="copy-guide-title">Quick visit tip</h2>
+                    <p class="mb-0" id="visit-tip">Plan your route around the feeding shows, then save time for the polar pavilion.</p>
+                </div>
+                <button type="button" class="btn btn-outline-success" data-copy-target="visit-tip"><span aria-hidden="true">⧉</span> Copy tip</button>
+            </div>
+        </section>
+
+        <!-- Assignment 5: star rating + random fact -->
+        <div class="text-center mb-4 mt-5">
+            <h2 class="mb-1">Join the Fun</h2>
+            <p class="text-body-secondary mb-0">Rate your experience and discover amazing animal facts</p>
+        </div>
+        <section class="row g-4" aria-label="Interactive zoo features">
+            <div class="col-12 col-lg-6">
+                <div class="card card-zoo h-100 text-center p-3 p-lg-4">
+                    <h3 class="h5" id="rating-title">Rate Your Zoo Experience</h3>
+                    <div class="star-rating mx-auto my-2" role="radiogroup" aria-labelledby="rating-title">
+                        <button type="button" class="star" role="radio" aria-checked="false" aria-label="1 star" tabindex="0">★</button>
+                        <button type="button" class="star" role="radio" aria-checked="false" aria-label="2 stars" tabindex="-1">★</button>
+                        <button type="button" class="star" role="radio" aria-checked="false" aria-label="3 stars" tabindex="-1">★</button>
+                        <button type="button" class="star" role="radio" aria-checked="false" aria-label="4 stars" tabindex="-1">★</button>
+                        <button type="button" class="star" role="radio" aria-checked="false" aria-label="5 stars" tabindex="-1">★</button>
+                    </div>
+                    <p class="rating-message fw-semibold mb-1" id="rating-message" aria-live="polite">Tap a star to rate us!</p>
+                    <p class="small text-body-secondary mb-0" id="rating-summary"></p>
+                </div>
+            </div>
+            <div class="col-12 col-lg-6">
+                <div class="card card-zoo fact-card h-100 p-3 p-lg-4" id="fact-card">
+                    <h3 class="h5">Random Animal Fact</h3>
+                    <div class="d-flex align-items-center gap-3 my-2 flex-grow-1">
+                        <span class="fact-emoji" id="fact-emoji" aria-hidden="true">🐾</span>
+                        <div aria-live="polite">
+                            <p class="mb-1" id="fact-text">Press the button to learn something wild!</p>
+                            <p class="small fw-semibold text-success mb-0" id="fact-animal"></p>
+                        </div>
+                    </div>
+                    <div class="d-flex flex-wrap align-items-center gap-2">
+                        <button type="button" class="btn btn-success" id="fact-button" data-sound="pop">🎲 Show me a fact</button>
+                        <span class="small text-body-secondary" id="fact-progress">0 of 10 facts discovered</span>
+                    </div>
+                    <ul class="list-inline small text-body-secondary mt-3 mb-0" id="fact-chips"></ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Task 2: accordion FAQ (js/accordion.js) -->
+        <div class="text-center mb-4 mt-5">
+            <h2 class="mb-1">Frequently Asked Questions</h2>
+            <p class="text-body-secondary mb-0">Click a question to show or hide the answer</p>
+        </div>
+        <section class="d-flex flex-column gap-2" aria-label="Frequently asked questions">
+            <div class="faq-item">
+                <h3 class="h6 mb-0">
+                    <button class="faq-question" type="button" data-sound="click" id="faq-q1" aria-expanded="false" aria-controls="faq-a1">
+                        <span>What are the opening hours?</span><span class="faq-icon" aria-hidden="true">+</span>
+                    </button>
+                </h3>
+                <div class="faq-answer" id="faq-a1" role="region" aria-labelledby="faq-q1">
+                    <p class="p-3 p-lg-4 mb-0">City Zoo is open every day from 09:00 AM to 06:00 PM. The last entry is at 05:00 PM.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <h3 class="h6 mb-0">
+                    <button class="faq-question" type="button" data-sound="click" id="faq-q2" aria-expanded="false" aria-controls="faq-a2">
+                        <span>How much do tickets cost?</span><span class="faq-icon" aria-hidden="true">+</span>
+                    </button>
+                </h3>
+                <div class="faq-answer" id="faq-a2" role="region" aria-labelledby="faq-q2">
+                    <p class="p-3 p-lg-4 mb-0">A Child pass costs 1000 ₸ on weekdays and an Adult pass costs 2000 ₸. Weekend and holiday prices are 1200 ₸ and 2500 ₸. Children under 7 and seniors enter for free with a valid document.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <h3 class="h6 mb-0">
+                    <button class="faq-question" type="button" data-sound="click" id="faq-q3" aria-expanded="false" aria-controls="faq-a3">
+                        <span>Can I bring my own food and drinks?</span><span class="faq-icon" aria-hidden="true">+</span>
+                    </button>
+                </h3>
+                <div class="faq-answer" id="faq-a3" role="region" aria-labelledby="faq-q3">
+                    <p class="p-3 p-lg-4 mb-0">Small snacks and water bottles are welcome. For picnics, please use the family rest areas or visit one of our eco-cafes.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <h3 class="h6 mb-0">
+                    <button class="faq-question" type="button" data-sound="click" id="faq-q4" aria-expanded="false" aria-controls="faq-a4">
+                        <span>Are pets allowed inside the zoo?</span><span class="faq-icon" aria-hidden="true">+</span>
+                    </button>
+                </h3>
+                <div class="faq-answer" id="faq-a4" role="region" aria-labelledby="faq-q4">
+                    <p class="p-3 p-lg-4 mb-0">For the safety of our animals, pets are not allowed in the park. Service animals are welcome with proper identification.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <h3 class="h6 mb-0">
+                    <button class="faq-question" type="button" data-sound="click" id="faq-q5" aria-expanded="false" aria-controls="faq-a5">
+                        <span>Is the zoo accessible for strollers and wheelchairs?</span><span class="faq-icon" aria-hidden="true">+</span>
+                    </button>
+                </h3>
+                <div class="faq-answer" id="faq-a5" role="region" aria-labelledby="faq-q5">
+                    <p class="p-3 p-lg-4 mb-0">Yes. All main paths are paved and step-free, and wheelchairs and strollers can be borrowed at the main gate.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <h3 class="h6 mb-0">
+                    <button class="faq-question" type="button" data-sound="click" id="faq-q6" aria-expanded="false" aria-controls="faq-a6">
+                        <span>When are the feeding shows?</span><span class="faq-icon" aria-hidden="true">+</span>
+                    </button>
+                </h3>
+                <div class="faq-answer" id="faq-a6" role="region" aria-labelledby="faq-q6">
+                    <p class="p-3 p-lg-4 mb-0">Feeding shows run several times a day. Open the Schedule page to see the exact times for each enclosure.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-dark text-white text-center mt-5 py-4 px-3">
+        <p class="mb-0">Developers: Jumabay Saule, Ramazan Mukhan, Nurdaulet Rashken, Saidazimov Mukhammadjan | Group SE-2501</p>
+    </footer>
+
+
+    <!-- Task 3: subscription popup (hidden by default, opened by js/popup.js) -->
+    <div class="popup-overlay" id="subscribePopup" role="dialog" aria-modal="true" aria-labelledby="popupTitle" aria-hidden="true">
+        <div class="popup-box p-4 p-sm-5">
+            <button type="button" class="popup-close" data-popup-close data-sound="click" aria-label="Close subscription form">&times;</button>
+            <h2 id="popupTitle" class="h3 mb-2">Subscribe to City Zoo News</h2>
+            <p class="text-body-secondary mb-4">Get news about new animals, events and special offers straight to your inbox.</p>
+            <form id="subscribe-form" action="#" method="post" novalidate data-validate-form>
+                <div class="mb-3">
+                    <label for="sub-name" class="form-label fw-semibold">Your Name</label>
+                    <input type="text" class="form-control" id="sub-name" name="name" placeholder="Enter your name" data-validate="name" required>
+                    <div class="invalid-feedback" role="alert"></div>
+                </div>
+                <div class="mb-3">
+                    <label for="sub-email" class="form-label fw-semibold">Email Address</label>
+                    <input type="email" class="form-control" id="sub-email" name="email" placeholder="example@mail.com" data-validate="email" required>
+                    <div class="invalid-feedback" role="alert"></div>
+                </div>
+                <div class="alert alert-success form-success d-none" role="status" tabindex="-1">🎉 Thank you! You are now subscribed to City Zoo news.</div>
+                <div class="d-flex flex-wrap gap-2">
+                    <button type="submit" class="btn btn-success btn-lg">Subscribe</button>
+                    <button type="button" class="btn btn-outline-secondary btn-lg" data-popup-close>Close</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Task 4: background colour button -->
+    <button type="button" class="btn btn-warning rounded-pill px-3 bg-color-btn" id="bgColorBtn" data-sound="click" aria-label="Change page background colour">🎨 Background: <span class="bg-color-name">Zoo Mist</span></button>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/sounds.js"></script>
+    <script src="js/theme.js"></script>
+    <script src="js/validation.js"></script>
+    <script src="js/accordion.js"></script>
+    <script src="js/popup.js"></script>
+    <script src="js/background.js"></script>
+    <script src="js/datetime.js"></script>
+    <script src="js/keyboard.js"></script>
+    <script src="js/greeting.js"></script>
+    <script src="js/rating.js"></script>
+    <script src="js/facts.js"></script>
+</body>
+</html>

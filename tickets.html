@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>City Zoo - Tickets & Pricing</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <script defer src="https://code.jquery.com/jquery-4.0.0.min.js"></script>
+    <script defer src="js/jquery-assignment.js"></script>
+</head>
+<body>
+    <a class="visually-hidden-focusable" href="#main">Skip to main content</a>
+
+    <!-- Date / time (js/datetime.js), Day-Night theme (js/theme.js) and sound switch (js/sounds.js) -->
+    <div class="datetime-bar d-flex flex-wrap justify-content-center align-items-center gap-2 gap-sm-3 py-1 px-3" aria-label="Current date and time, theme and sound settings">
+        <span>🕒 <time id="current-datetime">Loading…</time></span>
+        <button type="button" class="bar-btn" id="themeToggle" aria-pressed="false">🌙 Night mode</button>
+        <button type="button" class="bar-btn" id="soundToggle" aria-pressed="false">🔇 Sound off</button>
+    </div>
+
+    <header class="sticky-top">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark navbar-zoo shadow" aria-label="Main navigation" aria-keyshortcuts="ArrowLeft ArrowRight">
+        <div class="container">
+            <a class="navbar-brand fw-bold fs-4" href="index.html">🦁 City Zoo</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="mainNav">
+                <ul class="navbar-nav ms-auto gap-lg-1 py-2 py-lg-0">
+                    <li class="nav-item"><a class="nav-link fw-semibold rounded-pill px-3" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link fw-semibold rounded-pill px-3" href="animals.html">Animals</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle active fw-semibold rounded-pill px-3" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Visit</a>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item active" aria-current="page" href="tickets.html">Tickets</a></li>
+                            <li><a class="dropdown-item" href="schedule.html">Schedule</a></li>
+                            <li><a class="dropdown-item" href="map.html">Map</a></li>
+                            <li><a class="dropdown-item" href="rules.html">Rules</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link fw-semibold rounded-pill px-3" href="about.html">About Us</a></li>
+                    <li class="nav-item"><a class="nav-link fw-semibold rounded-pill px-3" href="contact.html">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link fw-semibold rounded-pill px-3" href="register.html">Sign Up</a></li>
+                    <li class="nav-item ms-lg-2"><button type="button" class="btn btn-warning btn-sm rounded-pill px-3 fw-semibold" data-popup-open="subscribePopup" data-sound="pop">Subscribe</button></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    </header>
+
+    <main id="main" class="container page-card my-4 mt-lg-5 px-3 px-sm-4 py-4 py-lg-5">
+        <div class="mb-4">
+            <h1 class="pb-2 mb-2">Ticket Prices & Passes</h1>
+            <p class="lead text-body-secondary mb-0">Choose the best option for your visit. Purchase tickets online to skip the box office line!</p>
+        </div>
+
+        <!-- Task 3: sidebar (col-lg-3) + content (col-lg-9) -->
+        <div class="row g-4">
+            <aside class="col-12 col-lg-3" aria-label="Visit information">
+                <div class="sidebar-box text-white rounded-4 p-3 p-lg-4 h-100">
+                    <h2 class="h5 border-bottom border-success-subtle pb-2 mb-3 text-white">Visit Info</h2>
+                    <p class="small mb-3"><strong class="d-block text-warning">Opening Hours</strong>Daily, 09:00 AM – 06:00 PM</p>
+                    <p class="small mb-3"><strong class="d-block text-warning">Location</strong>12 Wildlife Ave, Astana</p>
+                    <p class="small mb-4"><strong class="d-block text-warning">Phone</strong>+7 700 123 45 67</p>
+                    <h2 class="h5 border-bottom border-success-subtle pb-2 mb-3 text-white">Quick Links</h2>
+                    <ul class="list-unstyled small mb-0">
+                        <li class="mb-2"><a class="link-light" href="schedule.html">Feeding Schedule</a></li>
+                        <li class="mb-2"><a class="link-light" href="map.html">Park Map</a></li>
+                        <li><a class="link-light" href="rules.html">Visitor Rules</a></li>
+                    </ul>
+                </div>
+            </aside>
+            <section class="col-12 col-lg-9">
+                <div class="row row-cols-1 row-cols-md-3 g-4 mt-lg-0 pt-2">
+                <div class="col">
+                    <div class="card card-zoo h-100 text-center position-relative p-3 p-lg-4">
+                        
+                        <div class="card-body d-flex flex-column p-0">
+                            <h3 class="card-title h4">Child Pass</h3>
+                            <p class="text-body-secondary small">Ages 7–14 years old</p>
+                            <p class="display-6 fw-bold text-success mb-1">1000 ₸ <small class="fs-6 fw-normal text-body-secondary">/ weekday</small></p>
+                            <p class="mb-3"><span class="badge text-bg-light border text-wrap">1200 ₸ on Weekends & Holidays</span></p>
+                            <ul class="list-group list-group-flush text-start mb-3 flex-grow-1">
+                            <li class="list-group-item bg-transparent px-0">✅ Access to all open enclosures</li>
+                            <li class="list-group-item bg-transparent px-0">✅ Petting zoo area entry</li>
+                            <li class="list-group-item bg-transparent px-0">❌ Free guided tour</li>
+                            </ul>
+                            <a href="contact.html" class="btn btn-success btn-lg">Buy Ticket</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card card-zoo h-100 text-center position-relative p-3 p-lg-4 border-warning border-2">
+                        <span class="badge text-bg-warning position-absolute top-0 start-50 translate-middle px-3 py-2 rounded-pill">Most Popular</span>
+                        <div class="card-body d-flex flex-column p-0">
+                            <h3 class="card-title h4">Adult Pass</h3>
+                            <p class="text-body-secondary small">Ages 15+ years old</p>
+                            <p class="display-6 fw-bold text-success mb-1">2000 ₸ <small class="fs-6 fw-normal text-body-secondary">/ weekday</small></p>
+                            <p class="mb-3"><span class="badge text-bg-light border text-wrap">2500 ₸ on Weekends & Holidays</span></p>
+                            <ul class="list-group list-group-flush text-start mb-3 flex-grow-1">
+                            <li class="list-group-item bg-transparent px-0">✅ Full park access</li>
+                            <li class="list-group-item bg-transparent px-0">✅ Petting zoo area entry</li>
+                            <li class="list-group-item bg-transparent px-0">✅ Free digital map & schedule</li>
+                            </ul>
+                            <a href="contact.html" class="btn btn-warning btn-lg">Buy Ticket</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card card-zoo h-100 text-center position-relative p-3 p-lg-4">
+                        
+                        <div class="card-body d-flex flex-column p-0">
+                            <h3 class="card-title h4">Free Entry</h3>
+                            <p class="text-body-secondary small">Children under 7 & Seniors</p>
+                            <p class="display-6 fw-bold text-success mb-1">Free <small class="fs-6 fw-normal text-body-secondary">/ always</small></p>
+                            <p class="mb-3"><span class="badge text-bg-light border text-wrap">Valid document required</span></p>
+                            <ul class="list-group list-group-flush text-start mb-3 flex-grow-1">
+                            <li class="list-group-item bg-transparent px-0">✅ Full park access</li>
+                            <li class="list-group-item bg-transparent px-0">✅ Accompanying adult needed</li>
+                            <li class="list-group-item bg-transparent px-0">✅ Express entry gate</li>
+                            </ul>
+                            <a href="contact.html" class="btn btn-outline-success btn-lg">Get Free Pass</a>
+                        </div>
+                    </div>
+                </div>
+                </div>
+                <div class="alert alert-success mt-4 mb-0" role="note">
+                    <strong>💡 Note:</strong> Tickets purchased online are valid for any day within 30 days of purchase.
+                </div>
+            </section>
+        </div>
+
+        <!-- Assignment 5: multi-step booking form (js/wizard.js) -->
+        <div class="text-center mb-4 mt-5">
+            <h2 class="mb-1" id="wizard-title">Plan Your Visit</h2>
+            <p class="text-body-secondary mb-0">Book your tickets in 3 easy steps</p>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-8">
+                <form id="visit-wizard" class="card card-zoo p-3 p-lg-4" novalidate aria-labelledby="wizard-title">
+                    <div class="progress mb-2" id="wizard-progressbar" role="progressbar" aria-label="Booking progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="33">
+                        <div class="progress-bar bg-success wizard-progress-bar" id="wizard-progress"></div>
+                    </div>
+                    <p class="small fw-semibold text-body-secondary mb-3" id="wizard-step-label" aria-live="polite">Step 1 of 3: Date &amp; tickets</p>
+
+                    <fieldset class="wizard-step" data-step="1">
+                        <legend>Choose your date and tickets</legend>
+                        <div class="mb-3">
+                            <label for="visit-date" class="form-label fw-semibold">Visit Date</label>
+                            <input type="date" class="form-control" id="visit-date" name="visit-date" data-validate="date" required>
+                            <div class="invalid-feedback" role="alert"></div>
+                        </div>
+                        <div class="row g-3">
+                            <div class="col-12 col-sm-4">
+                                <label for="count-adult" class="form-label fw-semibold">Adults</label>
+                                <input type="number" class="form-control" id="count-adult" name="count-adult" min="0" max="20" value="1" data-count data-validate="tickets">
+                                <div class="invalid-feedback" role="alert"></div>
+                            </div>
+                            <div class="col-12 col-sm-4">
+                                <label for="count-child" class="form-label fw-semibold">Children (7–14)</label>
+                                <input type="number" class="form-control" id="count-child" name="count-child" min="0" max="20" value="0" data-count data-validate="count">
+                                <div class="invalid-feedback" role="alert"></div>
+                            </div>
+                            <div class="col-12 col-sm-4">
+                                <label for="count-free" class="form-label fw-semibold">Free entry</label>
+                                <input type="number" class="form-control" id="count-free" name="count-free" min="0" max="20" value="0" data-count data-validate="count">
+                                <div class="invalid-feedback" role="alert"></div>
+                            </div>
+                        </div>
+                        <p class="form-text mb-0">Weekend and holiday prices are applied automatically.</p>
+                    </fieldset>
+
+                    <fieldset class="wizard-step" data-step="2">
+                        <legend>Add extras (optional)</legend>
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="checkbox" id="extra-safari" name="extra" value="safari" data-label="Guided Safari Tour" data-price="1500">
+                            <label class="form-check-label" for="extra-safari">🚙 Guided Safari Tour — 1 500 ₸ per person</label>
+                        </div>
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="checkbox" id="extra-feeding" name="extra" value="feeding" data-label="Feeding Show Pass" data-price="500">
+                            <label class="form-check-label" for="extra-feeding">🍖 Feeding Show Pass — 500 ₸ per person</label>
+                        </div>
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="checkbox" id="extra-audio" name="extra" value="audio" data-label="Audio Guide" data-price="300">
+                            <label class="form-check-label" for="extra-audio">🎧 Audio Guide — 300 ₸ per person</label>
+                        </div>
+                        <p class="form-text mb-0">You can skip this step and press Next.</p>
+                    </fieldset>
+
+                    <fieldset class="wizard-step" data-step="3">
+                        <legend>Your details</legend>
+                        <div class="mb-3">
+                            <label for="visitor-name" class="form-label fw-semibold">Full Name</label>
+                            <input type="text" class="form-control" id="visitor-name" name="visitor-name" placeholder="Enter your full name" autocomplete="name" data-validate="name" required>
+                            <div class="invalid-feedback" role="alert"></div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="visitor-email" class="form-label fw-semibold">Email Address</label>
+                            <input type="email" class="form-control" id="visitor-email" name="visitor-email" placeholder="example@gmail.com" autocomplete="email" data-validate="email" required>
+                            <div class="invalid-feedback" role="alert"></div>
+                        </div>
+                        <div class="wizard-summary p-3" id="wizard-summary" aria-live="polite"></div>
+                    </fieldset>
+
+                    <div class="d-flex justify-content-between gap-2 mt-4">
+                        <button type="button" class="btn btn-outline-secondary btn-lg invisible" id="wizard-back">← Back</button>
+                        <button type="button" class="btn btn-success btn-lg" id="wizard-next">Next →</button>
+                        <button type="submit" class="btn btn-warning btn-lg d-none" id="wizard-submit">Confirm Booking</button>
+                    </div>
+                </form>
+
+                <div class="card card-zoo p-4 text-center d-none" id="wizard-success" role="status" tabindex="-1">
+                    <p class="display-5 mb-2" aria-hidden="true">🎉</p>
+                    <p class="mb-3" id="wizard-success-text"></p>
+                    <button type="button" class="btn btn-outline-success align-self-center" id="wizard-again" data-sound="click">Book another visit</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-dark text-white text-center mt-5 py-4 px-3">
+        <p class="mb-0">Developers: Jumabay Saule, Ramazan Mukhan, Nurdaulet Rashken, Saidazimov Mukhammadjan | Group SE-2501</p>
+    </footer>
+
+
+    <!-- Task 3: subscription popup (hidden by default, opened by js/popup.js) -->
+    <div class="popup-overlay" id="subscribePopup" role="dialog" aria-modal="true" aria-labelledby="popupTitle" aria-hidden="true">
+        <div class="popup-box p-4 p-sm-5">
+            <button type="button" class="popup-close" data-popup-close data-sound="click" aria-label="Close subscription form">&times;</button>
+            <h2 id="popupTitle" class="h3 mb-2">Subscribe to City Zoo News</h2>
+            <p class="text-body-secondary mb-4">Get news about new animals, events and special offers straight to your inbox.</p>
+            <form id="subscribe-form" action="#" method="post" novalidate data-validate-form>
+                <div class="mb-3">
+                    <label for="sub-name" class="form-label fw-semibold">Your Name</label>
+                    <input type="text" class="form-control" id="sub-name" name="name" placeholder="Enter your name" data-validate="name" required>
+                    <div class="invalid-feedback" role="alert"></div>
+                </div>
+                <div class="mb-3">
+                    <label for="sub-email" class="form-label fw-semibold">Email Address</label>
+                    <input type="email" class="form-control" id="sub-email" name="email" placeholder="example@mail.com" data-validate="email" required>
+                    <div class="invalid-feedback" role="alert"></div>
+                </div>
+                <div class="alert alert-success form-success d-none" role="status" tabindex="-1">🎉 Thank you! You are now subscribed to City Zoo news.</div>
+                <div class="d-flex flex-wrap gap-2">
+                    <button type="submit" class="btn btn-success btn-lg">Subscribe</button>
+                    <button type="button" class="btn btn-outline-secondary btn-lg" data-popup-close>Close</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Task 4: background colour button -->
+    <button type="button" class="btn btn-warning rounded-pill px-3 bg-color-btn" id="bgColorBtn" data-sound="click" aria-label="Change page background colour">🎨 Background: <span class="bg-color-name">Zoo Mist</span></button>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/sounds.js"></script>
+    <script src="js/theme.js"></script>
+    <script src="js/validation.js"></script>
+    <script src="js/accordion.js"></script>
+    <script src="js/popup.js"></script>
+    <script src="js/background.js"></script>
+    <script src="js/datetime.js"></script>
+    <script src="js/keyboard.js"></script>
+    <script src="js/wizard.js"></script>
+</body>
+</html>
