@@ -36,4 +36,4 @@ The previous JavaScript features remain in their original `js/` files: form vali
 
 ## Deployment
 
-GitHub Pages / Netlify URL: **Not deployed yet**. Add the live URL after deployment.
+GitHub Pages / Netlify URL: **https://muchanroma2501.github.io/webasik6/**
